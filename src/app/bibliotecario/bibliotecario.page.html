@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Tela do Bibliotecário</ion-title>
+    <ion-button slot="end" (click)="sair()">Sair</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <!--TITULO-->
+    <ion-item> 
+      <ion-label>Título</ion-label>
+      <ion-input type="text" [(ngModel)]="nome" ></ion-input>
+    </ion-item>
+
+    <!--TIPO-->
+    <ion-item> 
+      <ion-label>Tipo</ion-label>
+      <ion-input type="text" [(ngModel)]="tipo" ></ion-input>
+    </ion-item>
+
+    <!-- IMPLEMENTAR A SEPARAÇÃO DOS AUTORES POR ';' -->
+    <ion-item> 
+      <ion-label>Autores</ion-label>
+      <ion-input type="text" [(ngModel)]="autores" ></ion-input>
+    </ion-item>
+
+    <!-- FALTA FILTRAR PARA INSERIR SOMENTE O ANO-->
+    <ion-item> 
+      <ion-label>Ano de Publicação</ion-label>
+      <ion-datetime type="text" [(ngModel)]="ano" 
+        displayFormat="DD-MMM-YYYY"
+        doneText="Ok" cancelText="Cancelar"
+        ></ion-datetime>
+    </ion-item>
+
+    <ion-item> 
+      <ion-label>Status</ion-label>
+      <ion-input type="text" [(ngModel)]="status" ></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header><h4>Livros</h4></ion-list-header>
+    
+    <ion-item *ngFor="let livro of livros">
+      <ion-label>{{livro.nome+'('+livro.posicao+')'}}</ion-label>
+      <ion-button *ngIf="part.status === 1" color="danger" (click)="recusar()">Recusar</ion-button>
+      <ion-button *ngIf="part.status === 0" color="secondary" (click)="aceitar()">Aceitar</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <div class="center">
+    <ion-button (click)="salvar()">Salvar</ion-button>
+  </div>
+ 
+
+  <ion-label color="danger">
+    {{mensagem}}
+  </ion-label>
+  
+
+</ion-content>
